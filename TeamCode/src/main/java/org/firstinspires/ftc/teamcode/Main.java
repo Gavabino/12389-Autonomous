@@ -7,10 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 @TeleOp(name="Main")
 public class Main extends LinearOpMode{
     //Initialize motor variables
-    DcMotor leftFront = null;
-    DcMotor rightFront = null;
-    DcMotor leftRear = null;
-    DcMotor rightRear = null;
+    DcMotor leftFront;
+    DcMotor rightFront;
+    DcMotor leftRear;
+    DcMotor rightRear;
 
     @Override
     public void runOpMode() {
