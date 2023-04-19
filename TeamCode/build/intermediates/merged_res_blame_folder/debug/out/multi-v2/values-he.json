@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "org.firstinspires.ftc.teamcode.TeamCode-mergeDebugResources-29:/values-he/values-he.xml",
+            "outputFile": "org.firstinspires.ftc.teamcode.TeamCode-mergeDebugResources-28:/values-he/values-he.xml",
             "map": [
                 {
-                    "source": "/home/gavin/.gradle/caches/transforms-3/55437a61cf15faabc8a64387d3cdb106/transformed/jetified-zxing-android-embedded-4.3.0/res/values-he/values-he.xml",
+                    "source": "/home/gavin/.gradle/caches/transforms-3/c5efac7c11577d3ea3e081161d901a0b/transformed/jetified-zxing-android-embedded-4.3.0/res/values-he/values-he.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
