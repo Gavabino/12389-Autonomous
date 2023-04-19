@@ -20,13 +20,11 @@ public class Main extends LinearOpMode{
         leftRear = hardwareMap.get(DcMotor.class, "leftRear");
         rightRear = hardwareMap.get(DcMotor.class, "rightRear");
         //Set zero power behavior to float
-        Log file = new Log("Test", false);
-        file.addData("This line was written by team #");
-        file.addData(12389);
         DcMotor[] motors = {leftRear, leftFront, rightFront, rightRear};
         for (DcMotor motor : motors) {
             motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         }
+        Data data = new Data("Test");
         waitForStart();
         while (opModeIsActive()) {
 
