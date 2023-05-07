@@ -12,14 +12,84 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@TeleOp(name="Main")
+@TeleOp(name="Recorder")
 public class Recorder extends LinearOpMode{
+    static final String FILE_NAME = Environment.getExternalStorageDirectory().getPath()+"/"+"FIRST"+ "/" + "Test" + ".csv";
     //Initialize motor variables
     DcMotor leftFront;
     DcMotor rightFront;
     DcMotor leftRear;
     DcMotor rightRear;
 
+    public void controls() {
+        if (gamepad1.left_stick_y > 0.5 && gamepad1.left_stick_x > 0.5) {
+            rightFront.setPower(-0.75);
+            leftFront.setPower(0);
+            rightRear.setPower(0);
+            leftRear.setPower(-0.75);
+        } else if (gamepad1.left_stick_y > 0.5 && gamepad1.left_stick_x < -0.5) {
+            rightFront.setPower(0);
+            leftFront.setPower(-0.75);
+            rightRear.setPower(-0.75);
+            leftRear.setPower(0);
+        } else if (gamepad1.left_stick_y < -0.5 && gamepad1.left_stick_x < -0.5) {
+            rightFront.setPower(0.75);
+            leftFront.setPower(0);
+            rightRear.setPower(0);
+            leftRear.setPower(0.75);
+        } else if (gamepad1.left_stick_y < -0.5 && gamepad1.left_stick_x > 0.5) {
+            rightFront.setPower(0);
+            leftFront.setPower(0.75);
+            rightRear.setPower(0.75);
+            leftRear.setPower(0);
+        } else if (gamepad1.left_stick_y > 0.5) {
+            rightFront.setPower(-0.75);
+            leftFront.setPower(-0.75);
+            rightRear.setPower(-0.75);
+            leftRear.setPower(-0.75);
+        } else if (gamepad1.left_stick_y < -0.5) {
+            rightFront.setPower(0.75);
+            leftFront.setPower(0.75);
+            rightRear.setPower(0.75);
+            leftRear.setPower(0.75);
+        } else if (gamepad1.left_stick_x > 0.5) {
+            rightFront.setPower(-0.75);
+            leftFront.setPower(0.75);
+            rightRear.setPower(0.75);
+            leftRear.setPower(-0.75);
+        } else if (gamepad1.left_stick_x < -0.5) {
+            rightFront.setPower(0.75);
+            leftFront.setPower(-0.75);
+            rightRear.setPower(-0.75);
+            leftRear.setPower(0.75);
+        } else if (gamepad1.right_bumper) {
+            rightFront.setPower(0.75);
+            leftFront.setPower(-0.75);
+            rightRear.setPower(0.75);
+            leftRear.setPower(-0.75);
+        } else if (gamepad1.left_bumper) {
+            rightFront.setPower(-0.75);
+            leftFront.setPower(0.75);
+            rightRear.setPower(-0.75);
+            leftRear.setPower(0.75);
+        } else {
+            rightFront.setPower(0);
+            leftFront.setPower(0);
+            rightRear.setPower(0);
+            leftRear.setPower(0);
+        }
+        if (gamepad1.right_stick_x > 0.5) {
+            rightFront.setPower(1);
+            leftFront.setPower(-1);
+            rightRear.setPower(1);
+            leftRear.setPower(-1);
+        } else if (gamepad1.right_stick_x < -0.5) {
+            rightFront.setPower(-1);
+            leftFront.setPower(1);
+            rightRear.setPower(-1);
+            leftRear.setPower(1);
+        }
+    }
     @Override
     public void runOpMode() {
         //Declare motor variables
@@ -35,79 +105,13 @@ public class Recorder extends LinearOpMode{
         //Test writing data
         CSVWriter writer;
         try {
-            writer = new CSVWriter(new FileWriter(Environment.getExternalStorageDirectory().getPath()+"/"+"FIRST"+ "/" + "Data" + ".csv"));
+            writer = new CSVWriter(new FileWriter(FILE_NAME));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         waitForStart();
         while (opModeIsActive()) {
-            if (gamepad1.left_stick_y > 0.5 && gamepad1.left_stick_x > 0.5) {
-                rightFront.setPower(-0.75);
-                leftFront.setPower(0);
-                rightRear.setPower(0);
-                leftRear.setPower(-0.75);
-            } else if (gamepad1.left_stick_y > 0.5 && gamepad1.left_stick_x < -0.5) {
-                rightFront.setPower(0);
-                leftFront.setPower(-0.75);
-                rightRear.setPower(-0.75);
-                leftRear.setPower(0);
-            } else if (gamepad1.left_stick_y < -0.5 && gamepad1.left_stick_x < -0.5) {
-                rightFront.setPower(0.75);
-                leftFront.setPower(0);
-                rightRear.setPower(0);
-                leftRear.setPower(0.75);
-            } else if (gamepad1.left_stick_y < -0.5 && gamepad1.left_stick_x > 0.5) {
-                rightFront.setPower(0);
-                leftFront.setPower(0.75);
-                rightRear.setPower(0.75);
-                leftRear.setPower(0);
-            } else if (gamepad1.left_stick_y > 0.5) {
-                rightFront.setPower(-0.75);
-                leftFront.setPower(-0.75);
-                rightRear.setPower(-0.75);
-                leftRear.setPower(-0.75);
-            } else if (gamepad1.left_stick_y < -0.5) {
-                rightFront.setPower(0.75);
-                leftFront.setPower(0.75);
-                rightRear.setPower(0.75);
-                leftRear.setPower(0.75);
-            } else if (gamepad1.left_stick_x > 0.5) {
-                rightFront.setPower(-0.75);
-                leftFront.setPower(0.75);
-                rightRear.setPower(0.75);
-                leftRear.setPower(-0.75);
-            } else if (gamepad1.left_stick_x < -0.5) {
-                rightFront.setPower(0.75);
-                leftFront.setPower(-0.75);
-                rightRear.setPower(-0.75);
-                leftRear.setPower(0.75);
-            } else if (gamepad1.right_bumper) {
-                rightFront.setPower(0.75);
-                leftFront.setPower(-0.75);
-                rightRear.setPower(0.75);
-                leftRear.setPower(-0.75);
-            } else if (gamepad1.left_bumper) {
-                rightFront.setPower(-0.75);
-                leftFront.setPower(0.75);
-                rightRear.setPower(-0.75);
-                leftRear.setPower(0.75);
-            } else {
-                rightFront.setPower(0);
-                leftFront.setPower(0);
-                rightRear.setPower(0);
-                leftRear.setPower(0);
-            }
-            if (gamepad1.right_stick_x > 0.5) {
-                rightFront.setPower(1);
-                leftFront.setPower(-1);
-                rightRear.setPower(1);
-                leftRear.setPower(-1);
-            } else if (gamepad1.right_stick_x < -0.5) {
-                rightFront.setPower(-1);
-                leftFront.setPower(1);
-                rightRear.setPower(-1);
-                leftRear.setPower(1);
-            }
+            controls();
             ArrayList<String> data = new ArrayList<>();
             //Add encoder positions
             for (int i = 0; i < motors.length; i++) {
